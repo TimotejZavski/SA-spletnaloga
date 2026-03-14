@@ -77,8 +77,8 @@ class articles_controller
     }
 
     //NALOGA
-    //izpise obrazec za urejanje novice
-    public function edit(){
+    //izbrise novico iz baze
+    public function delete(){
         if (!isset($_GET['id'])) {
             return call('pages', 'error');
         }
@@ -89,31 +89,13 @@ class articles_controller
             return call('pages', 'error');
         }
         
-        $error = "";
-        if(isset($_GET["error"])){
-            switch($_GET["error"]){
-                case 1: $error = "Izpolnite vse podatke."; break;
-                default: $error = "Prišlo je do napake pri shranjevanju.";
-            }
-        }
-        
-        require_once('views/articles/edit.php');
-    }
-
-    //NALOGA
-    //posodobi novico v bazi
-    public function update(){
-        if(empty($_POST["id"]) || empty($_POST["title"]) || empty($_POST["abstract"]) || empty($_POST["text"]))
-        {
-            header("Location: /articles/edit?id=" . $_POST["id"] . "&error=1");
-        }
-        else if(Article::update($_POST["id"], $_POST["title"], $_POST["abstract"], $_POST["text"], $_SESSION["USER_ID"]))
+        if(Article::delete($_GET['id'], $_SESSION["USER_ID"]))
         {
             header("Location: /articles/list");
         }
         else
         {
-            header("Location: /articles/edit?id=" . $_POST["id"] . "&error=2");
+            header("Location: /articles/list?error=1");
         }
         die();
     }
