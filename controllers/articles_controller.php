@@ -37,7 +37,34 @@ class articles_controller
         require_once('views/articles/show.php');
     }
 
+    //NALOGA
+    //izpise obrazec
     public function create(){
+        $error = "";
+        if(isset($_GET["error"])){
+            switch($_GET["error"]){
+                case 1: $error = "Izpolnite vse podatke."; break;
+                default: $error = "Prišlo je do napake pri objavi novice.";
+            }
+        }
         require_once('views/articles/create.php');
+    }
+
+    //NALOGA
+    //obdela=klice metodo create
+    public function store(){
+        if(empty($_POST["title"]) || empty($_POST["abstract"]) || empty($_POST["text"]))
+        {
+            header("Location: /articles/create?error=1");
+        }
+        else if(Article::create($_POST["title"], $_POST["abstract"], $_POST["text"], $_SESSION["USER_ID"]))
+        {
+            header("Location: /");
+        }
+        else
+        {
+            header("Location: /articles/create?error=2");
+        }
+        die();
     }
 }
