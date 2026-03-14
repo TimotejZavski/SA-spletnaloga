@@ -13,7 +13,9 @@
             <label class="form-label">Besedilo</label>
             <textarea class="form-control" rows="8"></textarea>
         </div>
+        <div class="mb-3 text-center">
         <button type="submit" class="btn btn-primary">Objavi novico</button>
         <label class="text-danger"></label>
+        </div>
     </form>
 </div>
