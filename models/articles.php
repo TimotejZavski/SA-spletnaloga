@@ -83,4 +83,15 @@ class Article
         $query = "INSERT INTO articles (title, abstract, text, user_id) VALUES ('$title', '$abstract', '$text', '$user_id');";
         return $db->query($query);
     }
+
+    //NALOGA
+    //izbrise novico iz baze
+    public static function delete($id, $user_id)
+    {
+        $db = Db::getInstance();
+        $id = mysqli_real_escape_string($db, $id);
+        $user_id = mysqli_real_escape_string($db, $user_id);
+        $query = "DELETE FROM articles WHERE id = '$id' AND user_id = '$user_id';";
+        return $db->query($query);
+    }
 }
