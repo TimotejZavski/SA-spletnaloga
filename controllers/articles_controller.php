@@ -25,9 +25,12 @@ class articles_controller
         require_once('views/articles/index.php');
     }
 
+    //NALOGA
+    //izpise novice logiranga uporabnika
     public function list()
     {
-        
+        $articles = Article::findByUser($_SESSION["USER_ID"]);
+        require_once('views/articles/list.php');
     }
 
     public function show()
