@@ -56,6 +56,11 @@ class Article
         return null;
     }
 
+    public static function findByUser($user_id)
+    {
+        
+    }
+
     //NALOGA
     //da novico v bazo
     public static function create($title, $abstract, $text, $user_id)

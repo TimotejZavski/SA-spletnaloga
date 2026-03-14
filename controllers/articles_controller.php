@@ -25,6 +25,11 @@ class articles_controller
         require_once('views/articles/index.php');
     }
 
+    public function list()
+    {
+        
+    }
+
     public function show()
     {
         //preverimo, če je uporabnik podal informacijo, o oglasu, ki ga želi pogledati
