@@ -85,6 +85,20 @@ class Article
     }
 
     //NALOGA
+    //posodobi novico v bazi
+    public static function update($id, $title, $abstract, $text, $user_id)
+    {
+        $db = Db::getInstance();
+        $id = mysqli_real_escape_string($db, $id);
+        $title = mysqli_real_escape_string($db, $title);
+        $abstract = mysqli_real_escape_string($db, $abstract);
+        $text = mysqli_real_escape_string($db, $text);
+        $user_id = mysqli_real_escape_string($db, $user_id);
+        $query = "UPDATE articles SET title = '$title', abstract = '$abstract', text = '$text' WHERE id = '$id' AND user_id = '$user_id';";
+        return $db->query($query);
+    }
+
+    //NALOGA
     //izbrise novico iz baze
     public static function delete($id, $user_id)
     {
